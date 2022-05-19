@@ -1,4 +1,4 @@
-package ClaseDate_TimeDate;
+package Lab_1_ClaseDate_TimeDate;
 import java.util.Scanner;
 
 public class main{
