@@ -1,7 +1,7 @@
 package Lab_1_ClaseDate_TimeDate;
 import java.util.Scanner;
 
-public class main{
+public class TestFecha{
     public static void main(String[]args){
 
         Scanner tec = new Scanner(System.in);
