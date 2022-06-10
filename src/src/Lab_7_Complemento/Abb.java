@@ -1,5 +1,7 @@
 package Lab_7_Complemento;
 
+import java.util.LinkedList;
+
 public class Abb {
 
     class NodoAbb {
@@ -26,15 +28,44 @@ public class Abb {
 
     /* Verifica si existen dos enteros a, b en el ABB tal que a+b =0.
      */
+    LinkedList<Integer> datos=new LinkedList<>();
+    // si la lista ya posee un dato la funcion borra el dato ingresado para que no se sobre escriba
     public boolean Complemento() {
+        if(datos.size()!=0) {
+            datos.clear();
+        }
 
         return comple(laRaiz);
     }
 
     private boolean comple(NodoAbb n) {
-
+        pasarDatos(n);
+        for (int i = 0; i < datos.size(); i++) {
+            if(datos.contains(-datos.get(i))){
+                return true;
+            }
+        }
         return false;
     }
+    private void pasarDatos(NodoAbb nodo){
+        if (nodo != null) {
+            datos.add(nodo.elemento);
+        }
+        if(nodo.lchild!=null){
+            pasarDatos(nodo.lchild);
+        }
+        if(nodo.rchild!=null) {
+            pasarDatos(nodo.rchild);
+        }
+    }
+
+    private boolean buscar(NodoAbb n, int nro){
+        if(n==null) return false;
+        if(n.elemento==nro) return true;
+        if(n.elemento<nro) return buscar(n.lchild,nro);
+        return buscar(n.rchild,nro);
+    }
+
 
     //--- Supone que no existe un nodo con valor = elemento----//
     public void Insertar(int elemento) {

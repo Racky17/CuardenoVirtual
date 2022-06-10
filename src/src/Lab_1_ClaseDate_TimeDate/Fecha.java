@@ -104,35 +104,34 @@ public class Fecha{
         }
     }
 
-    public boolean sameDate(Date t) {
-        LocalDate x = LocalDate.now();
-        if (x.equals(t)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    //public boolean isBefore(Date t) {
-    //  LocalDate x = LocalDate.now();
-    //if (x.isBefore((ChronoLocalDate)t)) {
-    //  return true;
-    // } else {
-    //   return false;
-    // }
-    //}
-
-    //public boolean isAfter (Date t) {
-    //  LocalDate x = LocalDate.now();
-    //if (x.isAfter((ChronoLocalDate)t)) {
-    //  return true;
-    // } else {
-    //   return false;
-    // }
-    // }
-
     @Override
     public String toString(){
         return   getDia() + "/" + getMes() + "/" + getAño()+ " " + getHora() + ":" + getMinuto();
+    }
+
+    public boolean sameDate (Fecha t){
+        if(this.getAño()==t.getAño()){
+            if(this.getMes()== t.getMes()){
+                if(this.getDia()==t.getDia()){
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    public boolean isBefore (Fecha t){
+        int nro1, nro2;
+        nro1 = (getAño() << 9) | (getMes() << 5) | (getDia());
+        nro2 = (t.getAño() << 9) | (t.getMes() << 5) | (t.getDia());
+        return nro1 < nro2;
+
+    }
+
+    public boolean isAfter (Fecha t){
+        int nro1, nro2;
+        nro1 = (getAño() << 9) | (getMes() << 5) | (getDia());
+        nro2 = (t.getAño() << 9) | (t.getMes() << 5) | (t.getDia());
+        return nro1 > nro2;
     }
 }

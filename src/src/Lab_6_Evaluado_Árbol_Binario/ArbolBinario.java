@@ -1,6 +1,8 @@
 package Lab_6_Evaluado_Árbol_Binario;
-
 import java.util.LinkedList;
+
+//CREADORES Y  DESARROLLADORES:
+//Rodrigo Jara Y Leonardo Labrador
 
 public class ArbolBinario {
     int dato;
@@ -21,23 +23,29 @@ public class ArbolBinario {
 
     public void preOrden() {
         System.out.print(this.dato + " ");
-        if (iz != null) iz.preOrden();
-        if (der != null) der.preOrden();
+        if (iz != null)
+            iz.preOrden();
+        if (der != null)
+            der.preOrden();
     }
 
     public void inOrden() {
-        if (iz != null) iz.preOrden();
+        if (iz != null)
+            iz.preOrden();
         System.out.print(this.dato + " ");
-        if (der != null) der.preOrden();
+        if (der != null)
+            der.preOrden();
     }
 
     public void posOrden() {
-        if (iz != null) iz.preOrden();
-        if (der != null) der.preOrden();
+        if (iz != null)
+            iz.preOrden();
+        if (der != null)
+            der.preOrden();
         System.out.print(this.dato + " ");
     }
 
-    //cantidad de nodos-1 del camino más largo de la raiz a sus hojas
+    // cantidad de nodos-1 del camino más largo de la raiz a sus hojas
     public int altura() {
         return altura(this);
     }
@@ -49,7 +57,7 @@ public class ArbolBinario {
         return 1 + Math.max(altura(raiz.iz), altura(raiz.der));
     }
 
-    //size: cantidad de nodos del árbol
+    // size: cantidad de nodos del árbol
     public int size() {
         return size(this);
     }
@@ -73,14 +81,26 @@ public class ArbolBinario {
         }
     }
 
-    public LinkedList<ArbolBinario> nodosAltura(int h){
-        LinkedList<ArbolBinario> nodo = new LinkedList<>();
+    LinkedList<ArbolBinario> rangoNodos = new LinkedList<>();
 
-        if (iz != null){ iz.nodosAltura(h); }
-        if (der != null){ der.nodosAltura(h);}
-        if (this.altura() == h) {
-            System.out.print(this.dato+" ");
+    public LinkedList<ArbolBinario> rango(int i, int j) {
+        if (this.size() == 0) {
+            return new LinkedList<>();
         }
-        return nodo;
+        if (this.dato >= i && this.dato <= j) {
+            rangoNodos.addLast(this);
+        }
+        if (der != null) {
+            der.rangoNodos = this.rangoNodos;
+            der.rango(i, j);
+        }
+        if (iz != null) {
+            iz.rangoNodos = this.rangoNodos;
+            iz.rango(i, j);
+        }
+        return rangoNodos;
     }
 }
+
+//CREADORES Y  DESARROLLADORES:
+//Rodrigo Jara Y Leonardo Labrador

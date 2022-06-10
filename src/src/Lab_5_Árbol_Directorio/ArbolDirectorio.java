@@ -67,7 +67,13 @@ public class ArbolDirectorio {
      * CONDICION: no pueden haber dos carpetas en el mismo directorio con el mismo nombre
      */
     public boolean crearCarpeta(String path, String nombre) {
-
+        if(path!=null&&!path.equals(" ")) {
+            Carpeta c = ir(path);
+            if (!isCarpeta(c.hijos, nombre)) {
+                c.hijos.add(new Carpeta(nombre));
+                return true;
+            }
+        }
 
         return false;
     }
@@ -81,8 +87,24 @@ public class ArbolDirectorio {
      * Si se da el caso, cancele toda la operaci�n
      */
     public boolean mover(String path1, String path2) {
-        return false;
+        if(path1==""||path2==""){
+            return false;
+        }
+        Carpeta carp1=ir(path1);
+        Carpeta carp2=ir(path2);
+
+        //Comprueba si la carpeta del path2 tiene un hijo de igual nombre que la carpeta del path1
+
+        for (Carpeta c:carp2.hijos) {
+            if(c.nombre.equals(carp1.nombre)){
+                return false;
+            }
+        }
+        carp2.hijos.add(carp1);
+        eliminarCarpeta(path1);
+        return true;
     }
+
 
     /*
      * Dada una lista de hermanos, averiguar si en su interior se encuentra una con el nombre entregado como par�metro
@@ -99,6 +121,27 @@ public class ArbolDirectorio {
      * Usted elige la politica de eliminaci�n del nodo raiz
      */
     public boolean eliminarCarpeta(String path) {
+        if(path=="") return false;
+        if(path!=null) return false;
+        if(root!=null) {
+            //Armo el path del padre del path que nos dan
+            String[] carp=path.split("/");
+            String padrePath=carp[0];
+            for (int i = 1; i < carp.length-1; i++) {
+                padrePath+="/"+carp[i];
+            }
+            if (ir(path).hijos != null) {
+                //Elimino hijos del path
+                ir(path).hijos.clear();
+                //elimino padre del path
+                ir(padrePath).hijos.remove(ir(path));
+                return true;
+            } else {
+                ir(padrePath).hijos.remove(ir(path));
+                return true;
+            }
+
+        }
         return false;
     }
 

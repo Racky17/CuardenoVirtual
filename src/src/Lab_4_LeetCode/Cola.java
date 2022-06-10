@@ -1,44 +1,27 @@
 package Lab_4_LeetCode;
 
+import java.util.TreeMap;
+
 public class Cola {
 
-    //problema 1. N°1700. Number of Students Unable to Eat Lunch
+    //problema 1. N°933. Number of Recent Calls.
 
-    public int countStudents(int[] students, int[] sandwiches) {
+    public class RecentCounter {
 
-        int zeros= 0;
-        int unos= 0;
+        TreeMap<Integer, Integer> tm;
 
-        for(int student: students){
-
-            if(student==0){
-
-                zeros++;
-
-            }else{
-                unos++;
-
-            }
+        public RecentCounter() {
+            tm = new TreeMap<>();
         }
 
-
-        for (int sandwich: sandwiches){
-
-            if(sandwich==0){
-
-                if(zeros==0){
-                    return unos;
-
-                }zeros--;
-
-            }else{
-
-                if(unos==0){
-                    return zeros;
-
-                }unos--;
-            }
-
-        }return 0;
+        public int ping(int t) {
+            tm.put(t, 1 + tm.size());
+            return tm.tailMap(t - 3000).size();
+        }
     }
+
+    // problema 2. N°2073. Time Needed to Buy Tickets.
+
+    
+
 }
