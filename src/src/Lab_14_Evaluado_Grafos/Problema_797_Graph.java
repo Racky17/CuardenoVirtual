@@ -1,15 +1,16 @@
-package Lab_14_Lab_Evaluado;
+package Lab_14_Evaluado_Grafos;
+import java.util.*;
 
-   /*
-    Diego Arteaga
-    Samuel Perez
-    Rodrigo Jara
-    Jose Fuentes
-    Sebastian Jouannet
-    Leonardo Labrador
-    Christian Diaz
+/*
+ Diego Arteaga
+ Samuel Perez
+ Rodrigo Jara
+ Jose Fuentes
+ Sebastian Jouannet
+ Leonardo Labrador
+ Christian Diaz
 */
-    class Solution {
+    class Problema_797_Graph {
         public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
             //Codigo obtenido de https://www.youtube.com/watch?v=uvN4y7E3wZ8
             //fueron modificados algunos nomrbe de variables por comodidad
@@ -63,4 +64,3 @@ package Lab_14_Lab_Evaluado;
             return resp;
         }
     }
-}
